@@ -1,0 +1,1 @@
+export const PAGINATION_COMMENTS_LIMIT = 4
