@@ -8,10 +8,12 @@ const {
     editItem,
     deleteItem,
 } = require('../controllers/item')
+const { addComment, deleteComment } = require('../controllers/comment')
 const authenticated = require('../middlewares/authenticated')
 const hasRole = require('../middlewares/hasRole')
 const ROLES = require('../constants/roles')
 const mapItem = require('../helpers/map-item')
+const mapComment = require('../helpers/map-comment')
 
 const router = express.Router({ mergeParams: true })
 
@@ -82,6 +84,26 @@ router.delete(
     hasRole([ROLES.ADMIN]),
     async (req, res) => {
         await deleteItem(req.params.id)
+
+        res.send({ error: null })
+    }
+)
+
+router.post('/:id/comments', authenticated, async (req, res) => {
+    const newComment = await addComment(req.params.id, {
+        content: req.body.content,
+        author: req.user.id,
+    })
+
+    res.send({ data: mapComment(newComment) })
+})
+
+router.delete(
+    '/:itemId/comments/:commentId',
+    authenticated,
+    hasRole([ROLES.ADMIN]),
+    async (req, res) => {
+        await deleteComment(req.params.itemId, req.params.commentId)
 
         res.send({ error: null })
     }
