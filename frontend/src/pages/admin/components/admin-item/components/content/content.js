@@ -51,7 +51,7 @@ export const Content = () => {
 	}
 
 	if (isLoading) {
-		return <div className='loader'></div>
+		return <div className='admin-loader'></div>
 	}
 
 	return (

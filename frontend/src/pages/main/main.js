@@ -5,7 +5,7 @@ import {
 	selectShouldSearch,
 	selectTheme
 } from '../../selectors'
-import { BackToTop, Button, Search } from '../../components'
+import { Button, Search } from '../../components'
 import { Banner, EmptyList, Offers, Pagination, Product } from './components'
 import { truncateTitle } from '../utils/truncate-title'
 import { PAGINATION_LIMIT } from '../../constants'
@@ -113,7 +113,6 @@ export const Main = () => {
 					/>
 				)}
 			</div>
-			{/* <BackToTop /> */}
 		</div>
 	)
 }

@@ -10,19 +10,20 @@ import { useSelector } from 'react-redux'
 export const Admin = () => {
 	const isDarkMode = useSelector(selectTheme)
 	const isAdminPath = useMatch('/admin')
-	const [isLoading, setIsLoading] = useState(false)
+	const [isLoading, setIsLoading] = useState(true)
 	const [error, setError] = useState(null)
 
 	useEffect(() => {
-		if (isLoading) {
-			setIsLoading(true)
-			return <div className='loader'></div>
-		}
+		setIsLoading(false)
 
 		if (error) {
 			return setError(error)
 		}
 	}, [error, isLoading])
+
+	if (isLoading) {
+		return <div className='loader'></div>
+	}
 
 	return (
 		<PrivateContent access={[ROLE.ADMIN]} serverError={error}>

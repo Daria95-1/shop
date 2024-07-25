@@ -345,10 +345,9 @@
     display: none;
   }
 
-  .loader {
+  .loader, .admin-loader {
     position: fixed;
     top: 50%;
-    left: 50%;
     transform: translate(-50%, -50%);
     width: 30px;
     height: 30px;
@@ -358,6 +357,14 @@
     animation: loader 1s infinite;
   }
 
+  .loader {
+    left: 50%;
+  }
+
+  .admin-loader {
+    left: 56%;
+  }
+
   @keyframes loader {
     0% {
         transform: rotate(0deg)
@@ -365,7 +372,16 @@
     100% {
         transform: rotate(360deg)
     }
-}
+  }
+
+  @keyframes admin-loader {
+    0% {
+        transform: rotate(0deg)
+    }
+    100% {
+        transform: rotate(360deg)
+    }
+  }
 }
 
 body {
